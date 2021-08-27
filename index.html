@@ -25,118 +25,120 @@
                     </canvas>
 
                     <script>
-                        var posX = 10, posY = 10, cont_img = 0, nJogadores = 1;
-                        var caminho = './desenhos/';
-                        var cnv = document.querySelector('canvas');
-                        var imageInput1 = document.getElementById("img1");
-                        var ctx = cnv.getContext('2d');
-                                // var img = new Image();
-                                // img.src = "./desenhos/sprite_creeper0.png";
-                        var imgArray = new Array();
-                        imgArray[0] = new Image();   
-                        imgArray[0].src = "./desenhos/sprite_creeper0.png";
-                        imgArray[1] = new Image();   
-                        imgArray[1].src = "./desenhos/sprite_creeper1.png";
-                        imgArray[2] = new Image();   
-                        imgArray[2].src = "./desenhos/sprite_creeper2.png";
-                        imgArray[3] = new Image();   
-                        imgArray[3].src = "./desenhos/sprite_creeper3.png";
+                        document.addEventListener('DOMContentLoaded', O =>{ 
+                            var posX = 10, posY = 10, cont_img = 0, nJogadores = 1;
+                            var caminho = './desenhos/';
+                            var cnv = document.querySelector('canvas');
+                            var imageInput1 = document.getElementById("img1");
+                            var ctx = cnv.getContext('2d');
+                                    // var img = new Image();
+                                    // img.src = "./desenhos/sprite_creeper0.png";
+                            var imgArray = new Array();
+                            imgArray[0] = new Image();   
+                            imgArray[0].src = "./desenhos/sprite_creeper0.png";
+                            imgArray[1] = new Image();   
+                            imgArray[1].src = "./desenhos/sprite_creeper1.png";
+                            imgArray[2] = new Image();   
+                            imgArray[2].src = "./desenhos/sprite_creeper2.png";
+                            imgArray[3] = new Image();   
+                            imgArray[3].src = "./desenhos/sprite_creeper3.png";
 
-                        desenha();
-                        miniaturas();
-
-                        function miniaturas()
-                        {
-                            ctx.drawImage(imgArray[0], 5, 5, 10, 12);                            
-                            ctx.drawImage(imgArray[1], 20, 5, 10, 12);                            
-                            ctx.drawImage(imgArray[2], 35, 5, 10, 12);                            
-                        }
-
-                        function trocaImg()
-                        {
-                            imgArray[0].src = caminho+imageInput1;
-                            imgArray[1].src = caminho+imageInput1;
-                            imgArray[2].src = caminho+imageInput1;
-                            imgArray[3].src = caminho+imageInput1;
-                            miniaturas();
-                        }
-
-                        function criarBoneco()
-                        {
-                            nJogadores = nJogadores + 1;
-                        }
-
-                        function desenha()
-                        {
-                            ctx.clearRect(0, 20, cnv.width, cnv.height);
-                            for(cont = 1; cont <= nJogadores; cont++)                            {
-                                ctx.drawImage(imgArray[cont_img], posX+(40*cont), posY+(100*cont), 65, 67);
-                            }
-                            ctx.fillRect(450, 10, 50, 50);
-                        }
-
-                        function mover(lado)
-                        {
-                            if(lado ==1){
-                                posX = posX+10;
-                            }else{
-                                posX = posX-10;
-                            }
-
-                            if(cont_img < 3){
-                                cont_img = cont_img + 1;
-                            }else {
-                                cont_img = 0;
-                            }
                             desenha();
+                            miniaturas();
 
-                            window.addEventListener("keyup", apertaTecla);
-
-                            function apertaTecla(e)
+                            function miniaturas()
                             {
-                                // Direita
-                                if(e.keyCode == 37)
-                                {
-                                    if(posX >= 0){
-                                        posX = posX-10;
-                                    }else{
-                                        posX = posX+1;
-                                    }
-                                }
-
-                                // Esquerda
-                                if(e.keyCode == 39)
-                                {
-                                    if(posX <= 400){
-                                        posX = posX+10;
-                                    }else{
-                                        posX = posX-1;
-                                    }
-                                }
-
-                                // Cima
-                                if(e.keyCode == 38)
-                                {
-                                    if(posY >= 20){
-                                        posY = posY-10;
-                                    }else{
-                                        posY = posY + 1;
-                                    }
-                                }
-
-                                // Baixo
-                                if(e.keyCode == 40)
-                                {
-                                    if(posY <= 300){
-                                        posY = posY+10;
-                                    }else{
-                                        posY = posY-1;
-                                    }
-                                }
-
-                                desenha();
+                                ctx.drawImage(imgArray[0], 5, 5, 10, 12);                            
+                                ctx.drawImage(imgArray[1], 20, 5, 10, 12);                            
+                                ctx.drawImage(imgArray[2], 35, 5, 10, 12);                            
                             }
-                        }
+
+                            function trocaImg()
+                            {
+                                imgArray[0].src = caminho+imageInput1;
+                                imgArray[1].src = caminho+imageInput1;
+                                imgArray[2].src = caminho+imageInput1;
+                                imgArray[3].src = caminho+imageInput1;
+                                miniaturas();
+                            }
+
+                            function criarBoneco()
+                            {
+                                nJogadores = nJogadores + 1;
+                            }
+
+                            function desenha()
+                            {
+                                ctx.clearRect(0, 20, cnv.width, cnv.height);
+                                for(cont = 1; cont <= nJogadores; cont++)                            {
+                                    ctx.drawImage(imgArray[cont_img], posX+(40*cont), posY+(100*cont), 65, 67);
+                                }
+                                ctx.fillRect(450, 10, 50, 50);
+                            }
+
+                            function mover(lado)
+                            {
+                                if(lado ==1){
+                                    posX = posX+10;
+                                }else{
+                                    posX = posX-10;
+                                }
+
+                                if(cont_img < 3){
+                                    cont_img = cont_img + 1;
+                                }else {
+                                    cont_img = 0;
+                                }
+                                desenha();
+
+                                window.addEventListener("keyup", apertaTecla);
+
+                                function apertaTecla(e)
+                                {
+                                    // Direita
+                                    if(e.keyCode == 37)
+                                    {
+                                        if(posX >= 0){
+                                            posX = posX-10;
+                                        }else{
+                                            posX = posX+1;
+                                        }
+                                    }
+
+                                    // Esquerda
+                                    if(e.keyCode == 39)
+                                    {
+                                        if(posX <= 400){
+                                            posX = posX+10;
+                                        }else{
+                                            posX = posX-1;
+                                        }
+                                    }
+
+                                    // Cima
+                                    if(e.keyCode == 38)
+                                    {
+                                        if(posY >= 20){
+                                            posY = posY-10;
+                                        }else{
+                                            posY = posY + 1;
+                                        }
+                                    }
+
+                                    // Baixo
+                                    if(e.keyCode == 40)
+                                    {
+                                        if(posY <= 300){
+                                            posY = posY+10;
+                                        }else{
+                                            posY = posY-1;
+                                        }
+                                    }
+
+                                    desenha();
+                                }
+                            }
+                        })
                     </script>
                 </div>
             </div>
