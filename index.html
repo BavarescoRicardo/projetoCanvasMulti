@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="/bootstrap.min.css"/>        
+        <link rel="stylesheet" href="bootstrap.min.css"/>        
         <title>Canvas tutorial</title>
         <style>
             canvas {
@@ -25,8 +25,8 @@
                     </canvas>
 
                     <script>
-                        var posX = 50, posY = 100, cont_img = 0;
-                        const caminho = './desenhos/';
+                        var posX = 50, posY = 100, cont_img = 0, nJogadores = 0;
+                        var caminho = './desenhos/';
                         var cnv = document.querySelector('canvas');
                         var imageInput1 = document.getElementById("img1");
                         var ctx = cnv.getContext('2d');
@@ -71,9 +71,9 @@
                         function mover(lado)
                         {
                             if(lado ==1){
-                                posX = posX+2;
+                                posX = posX+10;
                             }else{
-                                posX = posX-2;
+                                posX = posX-10;
                             }
 
                             if(cont_img < 3){
@@ -89,13 +89,23 @@
                             {
                                 if(e.keyCode == 37)
                                 {
-                                    mover(2);
+                                    if(posX >= 0){
+                                        posX = posX-10;
+                                    }else{
+                                        posX = posX+1;
+                                    }
                                 }
 
                                 if(e.keyCode == 39)
                                 {
-                                    mover(1);
+                                    if(posX <= 400){
+                                        posX = posX+10;
+                                    }else{
+                                        posX = posX-1;
+                                    }
                                 }
+
+                                desenha();
                             }
                         }
                     </script>
@@ -104,10 +114,10 @@
 
             <div class="row" style="margin-top: 10px;">
                 <div class="col-2">
-                    <button style="width: 150px;" onclick=" mover(1);">-></button>
+                    <button style="width: 150px;" onclick=" mover(2);">Direita </button>
                 </div>
                 <div class="col-2">
-                    <button style="width: 150px;" onclick=" mover(2);"> -></button>        
+                    <button style="width: 150px;" onclick=" mover(1);"> Esquerda </button>        
                 </div>
             </div>
 
