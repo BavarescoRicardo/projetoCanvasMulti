@@ -30,17 +30,21 @@
                         var cnv = document.querySelector('canvas');
                         var imageInput1 = document.getElementById("img1");
                         var ctx = cnv.getContext('2d');
+                        var img = new Image();   
+                        var fundo = new Image();   
                                 // var img = new Image();
                                 // img.src = "./desenhos/sprite_creeper0.png";
                         var imgArray = new Array();
+                        img.src = "./desenhos/sprite_0.png";
+                        fundo.src = "./desenhos/fundo.jpg";
                         imgArray[0] = new Image();   
-                        imgArray[0].src = "./desenhos/sprite_creeper0.png";
+                        imgArray[0].src = "./desenhos/sprite_dir1.png";
                         imgArray[1] = new Image();   
-                        imgArray[1].src = "./desenhos/sprite_creeper1.png";
+                        imgArray[1].src = "./desenhos/sprite_dir2.png";
                         imgArray[2] = new Image();   
-                        imgArray[2].src = "./desenhos/sprite_creeper2.png";
+                        imgArray[2].src = "./desenhos/sprite_esq1.png";
                         imgArray[3] = new Image();   
-                        imgArray[3].src = "./desenhos/sprite_creeper3.png";
+                        imgArray[3].src = "./desenhos/sprite_esq2.png";
 
                         desenha();
                         miniaturas();
@@ -70,15 +74,16 @@
                         function desenha()
                         {
                             ctx.clearRect(0, 20, cnv.width, cnv.height);
+                            ctx.drawImage(fundo, 0, 0, cnv.width, cnv.height);
                             for(cont = 1; cont <= nJogadores; cont++)                            {
-                                ctx.drawImage(imgArray[cont_img], posX+(40*cont), posY+(100*cont), 65, 67);
+                                ctx.drawImage(imgArray[cont_img], posX+(40*cont), posY+(100*cont), 85, 87);
                             }
                             ctx.fillRect(450, 10, 50, 50);
                         }
 
                         function mover(lado)
                         {
-                            if(lado ==1){
+                            if(lado == 2){
                                 if(posX <= 300)
                                 {
                                     posX = posX+10;
@@ -90,7 +95,7 @@
                                 }
                             }
 
-                            if(cont_img < 3){
+                            if(cont_img < 1){
                                 cont_img = cont_img + 1;
                             }else {
                                 cont_img = 0;
@@ -150,10 +155,10 @@
 
             <div class="row" style="margin-top: 10px;">
                 <div class="col-2">
-                    <button style="width: 150px;" onclick=" mover(2);">Direita </button>
+                    <button style="width: 150px;" onclick=" mover(1);"> Esquerda </button>        
                 </div>
                 <div class="col-2">
-                    <button style="width: 150px;" onclick=" mover(1);"> Esquerda </button>        
+                    <button style="width: 150px;" onclick=" mover(2);">Direita </button>
                 </div>
             </div>
 
